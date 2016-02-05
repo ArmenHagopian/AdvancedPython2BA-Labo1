@@ -19,6 +19,8 @@ class TestUtils(unittest.TestCase):
     def test_roots(self):
         self.assertEqual(utils.roots(0, 0, 0), tuple())
         self.assertEqual(utils.roots(1, 0, 1), tuple())
+        self.assertEqual(utils.roots(0, 0, 1), tuple())
+
         # À compléter...
 
 
