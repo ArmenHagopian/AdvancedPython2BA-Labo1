@@ -61,16 +61,6 @@ def integrate(function, lower, upper):
         except:
             lowResult += 0
         i += 1
-    # print(round(upResult, 5))
-    # print(round(lowResult, 5))
-    # content = round(upResult, 5)-round(lowResult, 5)
-    # print(round(content, 4))
-    #
-    # x = upper
-    # upContent = eval(function)
-    # print(eval('x ** 1 - 1'))
-    # print(upContent)
-
 
     x = lower
     integral = eval(function)
