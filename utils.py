@@ -39,26 +39,48 @@ def integrate(function, lower, upper):
     lowResult = 0
     upResult = 0
     i = 0
-    exponents = []
     while i < len(a):
-        if a[i] == 'x':
-            exponent = int(a[i+2])
-            lowResult += lower**(exponent+1)/(exponent+1)
-            # exponents.append(exponent)
-            if a[i+3] == '-':
-                lowResult -= int(a[i+4])*lower
-            elif a[i+3] == '+':
-                lowResult += int(a[i+4])*lower
+        number = a[i]
+        if number == 'x':
+            if a[i+1] == '**':
+                exponent = int(a[i+2])
+            else:
+                exponent = 1
 
+            lowResult += lower**(exponent+1)/(exponent+1)
             upResult += upper**(exponent+1)/(exponent+1)
-            if a[i+3] == '-':
-                upResult -= int(a[i+4])*upper
-            elif a[i+3] == '+':
-                upResult += int(a[i+4])*upper
+            
+        try:
+            type(float(number)) == float
+            if a[i-1] == '-':
+                lowResult -= int(number)*lower
+                upResult -= int(number)*upper
+            elif a[i-1] == '+':
+                lowResult += int(number)*lower
+                upResult += int(number)*upper
+        except:
+            lowResult += 0
         i += 1
-    # for exponent in exponents:
-    #     lowResult += (lower**exponent)
-    return upResult - lowResult
+    # print(round(upResult, 5))
+    # print(round(lowResult, 5))
+    # content = round(upResult, 5)-round(lowResult, 5)
+    # print(round(content, 4))
+    #
+    # x = upper
+    # upContent = eval(function)
+    # print(eval('x ** 1 - 1'))
+    # print(upContent)
+
+
+    x = lower
+    integral = eval(function)
+    x = upper
+    integral += eval(function)
+    x = (lower+upper)/2
+    integral += 4*eval(function)
+    integral *= (upper-lower)/6
+    print(integral)
+    return round(upResult - lowResult, 15)
 
     # """Approximates the integral of a fonction between two bounds
     #
